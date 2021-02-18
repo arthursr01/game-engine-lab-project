@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
         if(IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
-            float jumpVelocity = 5f;
+            float jumpVelocity = 6f;
             rigidbody2d.velocity = Vector2.up * jumpVelocity;
             animator.SetBool("IsJumping", true);
         }
