@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
             rigidbody2d.velocity = Vector2.up * jumpVelocity;
             animator.SetBool("IsJumping", true);
         }
-        Debug.Log(animator.GetBool("IsJumping"));
+        
         if(rigidbody2d.velocity.y == 0)
         {
             OnLanding();
