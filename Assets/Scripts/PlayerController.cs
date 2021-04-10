@@ -26,21 +26,38 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
         Vector2 position = transform.position;
         position.x = position.x + 3.0f * horizontal * Time.deltaTime;
         transform.position = position;
+        
+        //move character
+        //transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime, 0f, 0f);
 
-        if(IsGrounded() && Input.GetKeyDown(KeyCode.Space))
+        //flip character
+        Vector3 characterScale = transform.localScale;
+        if(Input.GetAxis("Horizontal") < 0)
+        {
+            characterScale.x = -1;
+        }
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            characterScale.x = 1;
+        }
+        transform.localScale = characterScale;
+
+
+        //jump character
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             float jumpVelocity = 6f;
             rigidbody2d.velocity = Vector2.up * jumpVelocity;
             animator.SetBool("IsJumping", true);
         }
-        
+        //land character
         if(rigidbody2d.velocity.y == 0)
         {
             OnLanding();
