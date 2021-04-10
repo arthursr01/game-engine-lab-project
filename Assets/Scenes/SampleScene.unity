@@ -343,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59445238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0.33, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1226005253}
@@ -1490,6 +1490,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveRight: 1
+  health: 100
+  deathEffect: {fileID: 3592631219181705693, guid: 91c1fd274b767a5428a607955cfff3e3,
+    type: 3}
 --- !u!50 &541645696
 Rigidbody2D:
   serializedVersion: 4
@@ -4656,7 +4659,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.15}
   m_EdgeRadius: 0
 --- !u!4 &1505666100
 Transform:

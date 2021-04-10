@@ -6,12 +6,9 @@ public class Enemy1_Controller : MonoBehaviour
 {
 
     public bool MoveRight = true;
+    public int health = 100;
+    public GameObject deathEffect;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -29,8 +26,6 @@ public class Enemy1_Controller : MonoBehaviour
             MoveRight = false;
         }
 
-
-
         //move left or right based on MoveRight variable
         if (MoveRight == true)
         {
@@ -44,4 +39,24 @@ public class Enemy1_Controller : MonoBehaviour
         }
 
     }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <=0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        
+    }
+
+
+
 }
