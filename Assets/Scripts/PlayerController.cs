@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     private Rigidbody2D rigidbody2d;
     private BoxCollider2D boxCollider2d;
+    private bool characterRight;
     
    
     
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         Application.targetFrameRate = 10;
         rigidbody2d = transform.GetComponent<Rigidbody2D>();
         boxCollider2d = transform.GetComponent<BoxCollider2D>();
+        characterRight = true;
        
     }
 
@@ -33,11 +35,28 @@ public class PlayerController : MonoBehaviour
         Vector2 position = transform.position;
         position.x = position.x + 3.0f * horizontal * Time.deltaTime;
         transform.position = position;
-        
+
         //move character
         //transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime, 0f, 0f);
 
-        //flip character
+
+        //new flip character
+        if (characterRight == true && Input.GetAxis("Horizontal") < 0)
+        {
+            transform.Rotate(0f, 180f, 0f);
+            characterRight = false;
+        }
+
+        if (characterRight == false && Input.GetAxis("Horizontal") > 0)
+        {
+            transform.Rotate(0f, 180f, 0f);
+            characterRight = true;
+        }
+
+
+
+
+        /*//flip character
         Vector3 characterScale = transform.localScale;
         if(Input.GetAxis("Horizontal") < 0)
         {
@@ -48,10 +67,10 @@ public class PlayerController : MonoBehaviour
             characterScale.x = 1;
         }
         transform.localScale = characterScale;
-
+        */
 
         //jump character
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.W))
         {
             float jumpVelocity = 6f;
             rigidbody2d.velocity = Vector2.up * jumpVelocity;
