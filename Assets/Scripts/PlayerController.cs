@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidbody2d;
     private BoxCollider2D boxCollider2d;
     private bool characterRight;
-    
-   
-    
+
+
+
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         rigidbody2d = transform.GetComponent<Rigidbody2D>();
         boxCollider2d = transform.GetComponent<BoxCollider2D>();
         characterRight = true;
-       
+
     }
 
     // Update is called once per frame
@@ -77,10 +77,12 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsJumping", true);
         }
         //land character
-        if(rigidbody2d.velocity.y == 0)
+        if (rigidbody2d.velocity.y == 0)
         {
             OnLanding();
         }
+
+        
     }
 
     private bool IsGrounded()
@@ -93,4 +95,14 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("IsJumping", false);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "DeathBox" || collision.gameObject.name == "drone-1")
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+        
+    }
+
 }
