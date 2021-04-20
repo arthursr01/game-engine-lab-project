@@ -52,8 +52,8 @@ public class Enemy1_Controller : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-        Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        //Instantiate(deathEffect, transform.position, Quaternion.identity);
+        //Destroy(deathEffect);
         
     }
 
